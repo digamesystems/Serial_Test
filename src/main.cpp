@@ -47,10 +47,9 @@ void loop() {
   t0 = micros(); // start time
   while (mySerial2.available()) {
     char inChar = (char)mySerial2.read();
-    Serial.print(inChar);
+    //Serial.print(inChar);
   }
-  Serial.println();
-
+  //Serial.println();
   t1 = micros(); // end time
 
   Serial.println("Time to read: " + String(t1 - t0) + " microseconds.");
