@@ -41,7 +41,7 @@ void loop() {
                       // in the background. Making your send time look faster! We're doing this to be
                       // sure the data has been sent for timing measurements. ******
                       // 
-                      // In real life, you might want not not flush but move on in the program flow and 
+                      // In real life, you might want not to flush but move on in the program flow and 
                       // and do other things while the device you are talking do does things and starts
                       // sending back data.  
 
