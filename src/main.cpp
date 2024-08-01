@@ -5,7 +5,7 @@ HardwareSerial mySerial2(2); // Testing on UART2 (pins 16, 17)
 
 //********************************************************************************
 void setup() {
-  int baudRate = 1000000;
+  int baudRate = 2000000;
 
   Serial.begin(115200); // USB Serial port for debug msgs
   while (!Serial) {
