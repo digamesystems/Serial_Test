@@ -58,8 +58,7 @@ void loop() {
       // response += inChar;
 
       // Option 2: Read the whole string at once. (Delited by '!') A bit faster. 
-      response = mySerial2.readStringUntil('!');
-      
+      response = mySerial2.readStringUntil('!'); 
     }
   int t3 = micros(); // end time
 
