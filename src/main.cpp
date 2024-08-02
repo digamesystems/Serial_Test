@@ -28,7 +28,7 @@ void loop() {
 
   delay(1000);
 
-  String message = "hello.hello.hello.hello.hello.hello.hello.hello.hello.hello.hello."; 
+  String message = "hello.hello.hello.hello.hello.hello.hello.hello.hello.hello.hello!"; 
   int messageLength = message.length() + 1 ; // +1 for null terminator
   Serial.println("message length: " + String(messageLength));
 
@@ -48,22 +48,28 @@ void loop() {
 
   // RECEIVE
   int t2 = micros(); // start time
-  String response = "";
-    while (mySerial2.available()) {  // Data should be available since we just sent it through the loopback 
-                                    // and the TX buffer got emptied. 
-                                    // In real life you might want to spin until you get a response.
-      char inChar = (char)mySerial2.read();
-      // In real life, we'd do something with the incoming data here.
-      response += inChar;
+    String response = "";
+    while (mySerial2.available()==0) { // Wait for data to be available.
+    }
+
+    while (mySerial2.available()) { // Data should be available now.
+      // Option 1: Read a character at a time.
+      // char inChar = (char)mySerial2.read();
+      // response += inChar;
+
+      // Option 2: Read the whole string at once. (Delited by '!') A bit faster. 
+      response = mySerial2.readStringUntil('!');
+      
     }
   int t3 = micros(); // end time
+
 
   // REPORT
   Serial.println("Time to send: " + String(t1 - t0) + " microseconds.");
   Serial.println("Time per character: " + String((t1 - t0) / messageLength) + " microseconds.");
   Serial.println("Response: " + response);  
   Serial.println("Time to read: " + String(t3 - t2) + " microseconds.");
-  Serial.println("Time per character: " + String((t1 - t0) / messageLength) + " microseconds.");
+  Serial.println("Time per character: " + String((t3 - t2) / messageLength) + " microseconds.");
   Serial.print("\n\n");
 
 }
